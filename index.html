@@ -6,17 +6,27 @@
     <title>Tennis Scorer</title>
     <link rel="stylesheet" href="custom.css">
     <script src="script.js"></script>
-    <button onclick="game();">start new game</button>
+    <button onclick="game();">Play Rock Paper Scissors</button>
 
 </head>
+<!--
 <body>
     <!--This is a webpage that allows you to keep track of the score of a tennis game using the standard scoring format. Press the button corresponding to the player who just won a point and the score will be shown in the Game, Set and Match format.-->
+    <h1>Tennis Scorer</h1>
+    <!--new game-->
+    <button onclick="game();">start new game</button>
     <!--red button that gets pressed when Player 1 scores-->
-    <button onclick="player1();">Player 1</button>
+    <button type="button" onclick="updateScore('player1');">Player 1</button>
     <!--blue button that gets pressed when Player 2 scores-->
-    <button onclick="player2();">Player 2</button>
+    <button type="button" onclick='updateScore("player2");'>Player 2</button>
     <!--Table with two rows (one for each player) and five columns corresponding to player name, Sets won, Games won in current set, Points won in current game, and a visible or invisible 'S' symbol corresponding to who's serve it is. The table is styled attractively with inline CSS-->
-    <table>
+    <table style="border: 1px solid black;  
+                    margin-left: auto;  
+                    margin-right: auto;  
+                    border-collapse: collapse;    
+                    width: 500px;  
+                    text-align: center;  
+                    font-size: 20px;  ">
         <tr>
             <th>Player</th>
             <th>Sets</th>
@@ -25,19 +35,21 @@
             <th>Serve</th>
         </tr>
         <tr>
-            <td>Player 1</td>
-            <td id="set1">0</td>
-            <td id="game1">0</td>
-            <td id="point1">0</td>
-            <td id="serve1">S</td>
+            <td contentEditable="true">Player 1</td>
+            <td id="player1Sets">0</td>
+            <td id="player1Games">0</td>
+            <td id="player1Score">0</td>
+            <td id="player1Serve">S</td>
         </tr>
         <tr>
-            <td>Player 2</td>
-            <td id="set2">0</td>
-            <td id="game2">0</td>
-            <td id="point2">0</td>
-            <td id="serve2">S</td>
+            <td contentEditable="true">Player 2</td>
+            <td id="player2Sets">0</td>
+            <td id="player2Games">0</td>
+            <td id="player2Score">0</td>
+            <td id="player2Serve"></td>
         </tr>
+    </table>
     
 </body>
+
 </html>

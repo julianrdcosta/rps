@@ -1,82 +1,113 @@
-console.log("olo")
-function computerPlay() {
-    let choice = Math.floor(Math.random() * 3); 
-    switch (choice){
-        case 0:
-            return "Rock";
-        case 1:
-            return "Scissors";
-        case 2:
-            return "Paper";
-    }
-
-}
-
-function playRound(playerSelection,computerSelection){
-    let winner;
-    if ((playerSelection === "Rock" && computerSelection === "Scissors") || (playerSelection === "Scissors" && computerSelection === "Paper") || (playerSelection === "Paper" && computerSelection === "Rock")){
-        return "Player";
-    }
-    else if ((playerSelection === "Rock" && computerSelection === "Paper") || (playerSelection === "Scissors" && computerSelection === "Rock") || (playerSelection === "Paper" && computerSelection === "Scissors")){
-        return "Computer";
-    }
-    else {
-        return "Draw";
-    }
-}
-
 function game(){
-    let roundWinner = "Initial";
-    let compWins = 0;
-    let playerWins = 0;
-    let rounds = window.prompt("How many rounds of Rock-Paper-Scissors would you like to play?");
-    rounds = parseInt(rounds);
-    let playerSelection = window.prompt("Enter your move: r- for rock, s- for scissors, p-- for paper");
-    for (var i = 0; i<rounds;i++){
-        if (roundWinner === "Player"){
-            playerSelection = window.prompt("You won that round! \n\nEnter your next move: r- for rock, s- for scissors, p-- for paper");
-  
-        }
-        else if (roundWinner === "Computer"){
-            playerSelection = window.prompt("Sorry, the computer won. \n\nEnter your next move: r- for rock, s- for scissors, p-- for paper");
-            compWins++;
-        }
-        else if (roundWinner === "Draw"){
-            playerSelection = window.prompt("That one was a draw. \n\nEnter your move: r- for rock, s- for scissors, p-- for paper");
-        }   
-        let letter = playerSelection.charAt(0).toUpperCase();
-        if(letter === "R"){
-            roundWinner = playRound("Rock",computerPlay());
-        }
-        else if(letter === "S"){
-            roundWinner = playRound("Scissors",computerPlay());
-        }
-        else if(letter === "P"){
-            roundWinner = playRound("Paper",computerPlay());
-        }
-        switch (roundWinner) {
-            case "Player":
-                playerWins++;
-                break;
-            case "Computer":
-                compWins++;
-                break;
-            case "Draw":
-                break;
-            default:
-                console.log("Something went wrong, roundwinner is not Player, Computer or Draw");
-                break;
-          }
+    console.log('you are in the game function');
+}
+
+window.updateScore = updateScore;
+
+/*The function updateScore updates the match score as follows:
+    1. It grabs the current score from the HTML table and stores it in six local variables.
+    2. Based on whether the input value 'whoScored' was player1 or player2, it adds 1 to that players points and updates all the variables according to the rules of tennis
+*/
+function updateScore(string whoScored){
+    //Grab the current score from the HTML table
+    var player1Score = document.getElementById("player1Score").innerHTML;
+    var player1Games = document.getElementById("player1Games").innerHTML;
+    var player1Sets = document.getElementById("player1Sets").innerHTML;
+    var player2Score = document.getElementById("player2Score").innerHTML;
+    var player2Games = document.getElementById("player2Games").innerHTML;
+    var player2Sets = document.getElementById("player2Sets").innerHTML;
     
+    //Update the score based on who scored
+    if(whoScored == "player1"){
+        if(player1Score == "0"){
+            player1Score = "15";
+        }
+        else if(player1Score == "15"){
+            player1Score = "30";
+        }
+        else if(player1Score == "30"){
+            player1Score = "40";
+        }
+        else if(player1Score == "40"){
+            if(player2Score == "40"){
+                player1Score = "AD";
+            }
+            else if(player2Score == "AD"){
+                player2Score = "40";
+            }
+            else{
+                player1Score = "0";
+                player1Games++;
+            }
+        }
+        else if(player1Score == "AD"){
+            player1Score = "0";
+            player1Games++;
+        }
     }
-    if(compWins > playerWins){
-        alert("The game was won by the computer, "+compWins+" to "+playerWins);
-    }
-    else if(compWins < playerWins){
-        alert("You won!! ("+playerWins+" to "+compWins+")");
-    }
-    else if(compWins === playerWins){
-        alert("It was a "+compWins+" - "+playerWins+" draw ");
+    else if(whoScored == "player2"){
+        if(player2Score == "0"){
+            player2Score = "15";
+        }
+        else if(player2Score == "15"){
+            player2Score = "30";
+        }
+        else if(player2Score == "30"){
+            player2Score = "40";
+        }
+        else if(player2Score == "40"){
+            if(player1Score == "40"){
+                player2Score = "AD";
+            }
+            else if(player1Score == "AD"){
+                player1Score = "40";
+            }
+            else{
+                player2Score = "0";
+                player2Games++;
+            }
+        }
+        else if(player2Score == "AD"){
+            player2Score = "0";
+            player2Games++;
+        }
     }
     
+    //Update the games if necessary
+    if(player1Games == 6 && player2Games < 5){
+        player1Games = 0;
+        player2Games = 0;
+        player1Sets++;
+    }
+    else if(player2Games == 6 && player1Games < 5){
+        player1Games = 0;
+        player2Games = 0;
+        player2Sets++;
+    }
+    else if(player1Games == 7 && player2Games >= 5){
+        player1Games = 0;
+        player2Games = 0;
+        player1Sets++;
+    }
+    else if(player2Games == 7 && player1Games >= 5){
+        player1Games = 0;
+        player2Games = 0;
+        player2Sets++;
+    }
+
+    //Update the sets if necessary
+    if(player1Sets == 2){
+        alert("Player 1 wins!");
+    }
+    else if(player2Sets == 2){
+        alert("Player 2 wins!");
+    }
+
+    //Update the HTML table
+    document.getElementById("player1Score").innerHTML = player1Score;
+    document.getElementById("player1Games").innerHTML = player1Games;
+    document.getElementById("player1Sets").innerHTML = player1Sets;
+    document.getElementById("player2Score").innerHTML = player2Score;
+    document.getElementById("player2Games").innerHTML = player2Games;
+    document.getElementById("player2Sets").innerHTML = player2Sets;
 }
