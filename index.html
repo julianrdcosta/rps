@@ -3,12 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Tennis Scorer</title>
+    <link rel="stylesheet" href="custom.css">
     <script src="script.js"></script>
     <button onclick="game();">start new game</button>
 
 </head>
 <body>
+    <!--This is a webpage that allows you to keep track of the score of a tennis game using the standard scoring format. Press the button corresponding to the player who just won a point and the score will be shown in the Game, Set and Match format.-->
+    <!--red button that gets pressed when Player 1 scores-->
+    <button onclick="player1();">Player 1</button>
+    <!--blue button that gets pressed when Player 2 scores-->
+    <button onclick="player2();">Player 2</button>
+    <!--Table with two rows (one for each player) and five columns corresponding to player name, Sets won, Games won in current set, Points won in current game, and a visible or invisible 'S' symbol corresponding to who's serve it is. The table is styled attractively with inline CSS-->
+    <table>
+        <tr>
+            <th>Player</th>
+            <th>Sets</th>
+            <th>Games</th>
+            <th>Points</th>
+            <th>Serve</th>
+        </tr>
+        <tr>
+            <td>Player 1</td>
+            <td id="set1">0</td>
+            <td id="game1">0</td>
+            <td id="point1">0</td>
+            <td id="serve1">S</td>
+        </tr>
+        <tr>
+            <td>Player 2</td>
+            <td id="set2">0</td>
+            <td id="game2">0</td>
+            <td id="point2">0</td>
+            <td id="serve2">S</td>
+        </tr>
     
 </body>
 </html>
