@@ -6,19 +6,45 @@
     <title>Tennis Scorer</title>
     <link rel="stylesheet" href="custom.css">
     <script src="script.js"></script>
-    <button onclick="game();">Play Rock Paper Scissors</button>
 
 </head>
-<!--
+
 <body>
     <!--This is a webpage that allows you to keep track of the score of a tennis game using the standard scoring format. Press the button corresponding to the player who just won a point and the score will be shown in the Game, Set and Match format.-->
-    <h1>Tennis Scorer</h1>
-    <!--new game-->
-    <button onclick="game();">start new game</button>
-    <!--red button that gets pressed when Player 1 scores-->
-    <button type="button" onclick="updateScore('player1');">Player 1</button>
-    <!--blue button that gets pressed when Player 2 scores-->
-    <button type="button" onclick='updateScore("player2");'>Player 2</button>
+    <h1 style="text-align: center;
+    ">Tennis Scorer</h1>
+    <h2 style="text-align: center;"
+    >Press the button corresponding to the player who just won a point and the score will be shown in the Game, Set and Match format.</h2>
+    <!--Table with three columns, the first containing the button for player 1, the second containing the other control buttons (New Game, Undo and Redo), and the third containing the button for player 2
+    CSS: The first button is styled in red and covers the whole column, the second player button is styled in blue. The New Game, Undo and Redo buttons are stacked vertically-->
+    <table style="border: 1px solid black;  
+                    margin-left: auto;  
+                    margin-right: auto;  
+                    border-collapse: collapse;    
+                    width: 500px;  
+                    text-align: center;  
+                    font-size: 20px;  ">
+        <tr>
+            <td>
+                <!--red button that gets pressed when Player 1 scores-->
+                <button class="button-36" id="button1" type="button" onclick="updateScore('player1');">Player 1</button>
+            </td>
+
+            <td>
+                <!--New Game button-->
+                <button onclick="game();">New Game</button>
+                <!--Undo button-->
+                <button onclick="undo();">Undo</button>
+                <!--Redo button-->
+                <button onclick="redo();">Redo</button>
+            </td>
+            <td>
+                <!--blue button that gets pressed when Player 2 scores-->
+                <button class="button-36" id="button2" type="button" onclick='updateScore("player2");'>Player 2</button>
+            </td>
+        </tr>
+    </table>
+
     <!--Table with two rows (one for each player) and five columns corresponding to player name, Sets won, Games won in current set, Points won in current game, and a visible or invisible 'S' symbol corresponding to who's serve it is. The table is styled attractively with inline CSS-->
     <table style="border: 1px solid black;  
                     margin-left: auto;  
@@ -35,14 +61,14 @@
             <th>Serve</th>
         </tr>
         <tr>
-            <td contentEditable="true">Player 1</td>
+            <td id="player1" contentEditable="true">Player 1</td>
             <td id="player1Sets">0</td>
             <td id="player1Games">0</td>
             <td id="player1Score">0</td>
             <td id="player1Serve">S</td>
         </tr>
         <tr>
-            <td contentEditable="true">Player 2</td>
+            <td id="player2" contentEditable="true">Player 2</td>
             <td id="player2Sets">0</td>
             <td id="player2Games">0</td>
             <td id="player2Score">0</td>

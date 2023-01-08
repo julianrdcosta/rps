@@ -2,13 +2,33 @@ function game(){
     console.log('you are in the game function');
 }
 
-window.updateScore = updateScore;
+window.onload=function(){
+    const input1 = document.getElementById('player1');
+    input1.addEventListener('input', updatePlayer1);
+
+    const input2 = document.getElementById('player2');
+    input2.addEventListener('input', updatePlayer2);
+  }
+
+
+/* This function is called when the Player 1 contenteditable div is edited and changes the text on the button "button1" to reflect the player's name */
+function updatePlayer1(){
+    var player1 = document.getElementById("player1").innerHTML;
+    document.getElementById("button1").innerHTML = player1;
+    console.log('you are in the updatePlayer1 function');
+}
+
+/* This function is called when the Player 2 contenteditable div is edited and changes the text on the button "button2" to reflect the player's name */
+function updatePlayer2(){
+    var player2 = document.getElementById("player2").innerHTML;
+    document.getElementById("button2").innerHTML = player2;
+}
 
 /*The function updateScore updates the match score as follows:
     1. It grabs the current score from the HTML table and stores it in six local variables.
     2. Based on whether the input value 'whoScored' was player1 or player2, it adds 1 to that players points and updates all the variables according to the rules of tennis
 */
-function updateScore(string whoScored){
+function updateScore(whoScored){
     //Grab the current score from the HTML table
     var player1Score = document.getElementById("player1Score").innerHTML;
     var player1Games = document.getElementById("player1Games").innerHTML;
